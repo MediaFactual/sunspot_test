@@ -75,7 +75,8 @@ module SunspotTest
     end
 
     def solr_ping_uri
-      URI.parse(Sunspot.session.config.solr.url + "/admin/ping")
+      config = Sunspot::Rails.configuration
+      URI.parse("http://" + config.hostname + ":" + config.port.to_s + config.path + "/admin/ping")
     end
   end
 end
